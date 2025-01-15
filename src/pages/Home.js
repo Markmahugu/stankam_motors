@@ -1,63 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import '../index.css';
-import SearchBar from "../components/SearchBar";
-import CarCard from "../components/CarCard";
-import { fetchCars } from "../utils/api"; // Utility function to fetch cars from the backend
-import "bootstrap/dist/css/bootstrap.min.css";
+import SearchBar from '../components/SearchBar';
+import CarCard from '../components/CarCard';
+import { fetchCars } from '../utils/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import AOS styles
+import 'aos/dist/aos.css';
+import CarWheelLoader from '../components/CarWheelLoader'; 
 
 function Home() {
-    const [cars, setCars] = useState([]); // State to store the list of cars
-    const [filteredCars, setFilteredCars] = useState([]); // State to store filtered cars based on search
-    const [loading, setLoading] = useState(true); // State to handle loading indicator
-    const [error, setError] = useState(null); // State to handle errors
+    const [cars, setCars] = useState([]);
+    const [filteredCars, setFilteredCars] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Initialize AOS for scroll animations
         AOS.init();
 
         const loadCars = async () => {
             try {
-                const data = await fetchCars(); // Fetch the cars with all details from the backend
-                console.log("Fetched Cars: ", data); // Debug: log the data fetched from the backend
-                setCars(data); // Update the state with the fetched data
-                setFilteredCars(data); // Set filtered cars initially as all cars
+                const data = await fetchCars();
+                setCars(data);
+                setFilteredCars(data);
             } catch (err) {
-                setError("Failed to load cars. Please try again later.");
+                setError('Failed to load cars. Please try again later.');
             } finally {
-                setLoading(false); // Set loading to false
+                setLoading(false);
             }
         };
         loadCars();
     }, []);
 
-    // Handle search
     const handleSearch = (searchTerm) => {
-        console.log("Search Term: ", searchTerm); // Debug: log the search term entered
         if (!searchTerm) {
-            setFilteredCars(cars); // Show all cars if no search term is provided
+            setFilteredCars(cars);
         } else {
-            const filtered = cars.filter(car =>
-                car.name.toLowerCase().includes(searchTerm.toLowerCase()) // Ensure case-insensitive search
+            const filtered = cars.filter((car) =>
+                car.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
-            console.log("Filtered Cars: ", filtered); // Debug: log the filtered cars
             setFilteredCars(filtered);
         }
     };
 
-    // Render loading spinner
     if (loading) {
         return (
             <div className="text-center mt-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
+                <CarWheelLoader />
             </div>
         );
     }
 
-    // Render error message
     if (error) {
         return (
             <div className="alert alert-danger text-center mt-5" role="alert">
@@ -71,12 +63,58 @@ function Home() {
             {/* Hero Section */}
             <section className="hero-section" style={{ backgroundImage: "url('/ford.png')" }}>
                 <div className="overlay">
+
                     <h1 data-aos="fade-up" className="text-center text-white hero-title">
                         Welcome to STANMAK MOTORS
                     </h1>
                     <p data-aos="fade-up" data-aos-delay="200" className="text-center text-white hero-subtitle">
                         Find Your Dream Car Today
                     </p>
+                </div>
+            </section>
+
+            {/* Google Photos Videos Section */}
+            <section className="youtube-videos my-5">
+                <div className="container">
+                    <h2 className="text-center mb-4">Check Out Our Latest Videos</h2>
+                    <div className="row">
+                        {/* Video 1 */}
+                        <div className="col-md-4 mb-4">
+                            <iframe
+                                width="100%"
+                                height="400"
+                                className="rounded shadow"
+                                src="https://m.youtube.com/shorts/EwcrAKo3Ff4"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                        {/* Video 2 */}
+                        <div className="col-md-4 mb-4">
+                            <iframe
+                                width="100%"
+                                height="400"
+                                className="rounded shadow"
+                                src="https://m.youtube.com/shorts/djpKk2U9OAg"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                        {/* Video 3 */}
+                        <div className="col-md-4 mb-4">
+                            <iframe
+                                width="100%"
+                                height="400"
+                                className="rounded shadow"
+                                src="https://www.youtube.com/shorts/_fqlX4Wk0l0"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    </div>
                 </div>
             </section>
 

@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom"; // If you want to use react-router links for internal pages
+import { Link } from "react-router-dom"; 
+import "../index.css"; 
 
 function Footer() {
     return (
         <footer className="bg-dark text-white text-center py-5">
             <div className="container">
                 {/* Social Media Links */}
-                <div className="mb-4">
+                <div className="mb-4 social-media">
                     <a
                         href="https://facebook.com"
                         target="_blank"
@@ -24,7 +25,7 @@ function Footer() {
                         <i className="fab fa-twitter"></i>
                     </a>
                     <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/stankam_motors_ltd/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white mx-3"
@@ -52,6 +53,9 @@ function Footer() {
                             </li>
                             <li>
                                 <Link to="/faq" className="text-white nav-link">FAQ</Link>
+                            </li>
+                            <li>
+                                <Link to="/add-car" className="text-white nav-link">Add Car</Link> {/* Link to Add Car route */}
                             </li>
                         </ul>
                     </div>

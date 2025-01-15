@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../index.css";
 
 function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
-                <Link className="navbar-brand" to="/">
-                    STANMAK MOTORS
-                </Link>
+                <div className="text-center">
+                    <img
+                        src="/stanmak.png"
+                        alt="Stanmak Motors Logo"
+                        className="navbar-logo"
+                    />
+                </div>
                 <button
                     className="navbar-toggler"
                     type="button"

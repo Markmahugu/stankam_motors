@@ -1,3 +1,5 @@
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
 :root {
   --font-family-sans: 'Arial', sans-serif;
   --font-family-code: 'source-code-pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -25,6 +27,53 @@ code {
 
 .navbar-brand {
   font-weight: bold;
+}
+
+/* NavBar Styles */
+:root {
+  --navbar-bg-color: #343a40;
+  --navbar-link-color: #ffffff;
+  --navbar-link-hover-color: #dddddd;
+  --navbar-link-spacing: 15px;
+  --navbar-logo-spacing: 20px;
+}
+
+.navbar {
+  background-color: var(--navbar-bg-color);
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: var(--navbar-link-color);
+  margin-right: var(--navbar-link-spacing);
+  transition: color 0.3s ease;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+  color: var(--navbar-link-hover-color);
+}
+
+.navbar .navbar-logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: var(--navbar-logo-spacing);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 /* Card Styles */
@@ -110,33 +159,69 @@ code {
 }
 
 /* Hero Section */
+:root {
+  --hero-bg-image: url('/public/ford.png');
+  --hero-overlay-color: rgba(0, 0, 0, 0.5);
+  --hero-title-font-size: 3rem;
+  --hero-subtitle-font-size: 1.5rem;
+  --hero-padding: 30px;
+  --hero-text-color: #ffffff;
+  --hero-transition-speed: 0.3s;
+}
+
+/* Hero Section */
 .hero-section {
+  background-image: var(--hero-bg-image);
   background-size: cover;
   background-position: center;
-  height: 60vh;
+  height: 100vh; /* Adjust height as needed */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  color: white;
+  color: var(--hero-text-color);
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 2; /* Place content above the overlay */
 }
 
 .hero-section .overlay {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 30px;
+  background: var(--hero-overlay-color);
+  padding: var(--hero-padding);
   text-align: center;
-  border-radius: var(--border-radius);
+  border-radius: 8px;
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: var(--hero-title-font-size);
   font-weight: bold;
   margin-bottom: 10px;
+  transition: transform var(--hero-transition-speed);
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: var(--hero-subtitle-font-size);
   margin-bottom: 20px;
+  transition: transform var(--hero-transition-speed);
+}
+
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+[data-aos="fade-up"] {
+  transform: translateY(20px);
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translateY(0);
 }
 
 /* Additional Styling */
@@ -146,4 +231,292 @@ code {
 
 .card:hover {
   transform: scale(1.05);
+}
+
+.car-wheel-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.wheel {
+  width: 100px;
+  height: 100px;
+  border: 10px solid #333;
+  border-radius: 50%;
+  border-top: 10px solid #999;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+/* Footer Styles */
+footer .container {
+  display: center;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+/* search bar styles */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #212529;
+  --border-radius: 0.25rem;
+  --transition-speed: 0.3s;
+}
+
+.search-bar {
+  background-color: var(--background-color);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar .input-group {
+  margin-bottom: 1rem;
+}
+
+.search-bar .form-control {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary-color);
+}
+
+.search-bar .btn {
+  border-radius: var(--border-radius);
+}
+
+.search-bar .filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-bar .filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-bar .filter-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.search-bar .filter-group input[type="range"],
+.search-bar .filter-group select,
+.search-bar .filter-group input[type="text"],
+.search-bar .filter-group input[type="number"] {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary-color);
+  padding: 0.5rem;
+}
+
+.price-range-buttons .btn-light {
+  margin: 0.5rem 0.25rem;
+  transition: background-color var(--transition-speed);
+}
+
+.price-range-buttons .btn-light:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.manual-price-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search-bar .filter-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.search-bar .filter-actions .btn {
+  flex: 1;
+  padding: 0.75rem;
+  transition: background-color var(--transition-speed);
+}
+
+.search-bar .filter-actions .btn-secondary:hover {
+  background-color: var(--secondary-color);
+}
+
+.search-bar .filter-actions .btn-primary:hover {
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 767px) {
+  .search-bar .filters {
+    flex-direction: column;
+  }
+}
+
+.add-car-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+button.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: green;
+    margin-bottom: 15px;
+}
+
+/* AddCar Styles */
+
+
+.add-car-form {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.add-car-form:hover {
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  outline: none;
+}
+
+button.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.submit-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+button.submit-btn:active {
+  background-color: #388e3c;
+  transform: translateY(0);
+}
+
+.error-message,
+.success-message {
+  margin-bottom: 25px;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+@media (max-width: 768px) {
+  .add-car-form {
+      padding: 20px;
+      max-width: 100%;
+  }
+
+  button.submit-btn {
+      width: 100%;
+  }
 }

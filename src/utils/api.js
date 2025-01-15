@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api"; // Update with your backend API URL
+const API_URL = "http://localhost:5000/api"; // Ensure this matches your backend API base URL
 
 // Fetch cars from the backend API
 export const fetchCars = async () => {
@@ -21,5 +21,16 @@ export const fetchCarById = async (id) => {
     } catch (error) {
         console.error(`Error fetching car with ID ${id}:`, error);
         throw new Error("Failed to fetch car details. Please try again later.");
+    }
+};
+
+// Add a new car to the backend API
+export const addCar = async (carData) => {
+    try {
+        const response = await axios.post(`${API_URL}/cars`, carData);
+        return response.data; // Return the response indicating success or failure
+    } catch (error) {
+        console.error("Error adding car:", error);
+        throw new Error("Failed to add car. Please try again later.");
     }
 };

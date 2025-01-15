@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // Access route parameters
 import { fetchCarById } from '../utils/api'; // API call to fetch car by ID
+import CarWheelLoader from '../components/CarWheelLoader'; 
+
 
 function CarDetails() {
     const { id } = useParams(); // Get the car ID from the URL parameters
@@ -22,17 +24,6 @@ function CarDetails() {
         };
         getCarDetails();
     }, [id]); // Dependency on the car ID
-
-    // Render loading spinner
-    if (loading) {
-        return (
-            <div className="text-center mt-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
-            </div>
-        );
-    }
 
     // Render error message if any
     if (error) {

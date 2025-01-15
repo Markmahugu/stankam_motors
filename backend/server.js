@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 const { Pool } = require("pg");
 require("dotenv").config();
 
@@ -10,6 +12,7 @@ const port = process.env.PORT || 5000; // Allow environment-based port configura
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // Serve uploaded files
 
 // PostgreSQL connection
 const pool = new Pool({
@@ -30,7 +33,21 @@ pool.connect((err) => {
     }
 });
 
+// Set up multer for file upload
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads/photos/"); // Store images in the 'uploads/photos' folder
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname)); // Filename with timestamp to avoid duplicates
+    },
+});
+
+const upload = multer({ storage: storage });
+
 // Routes
+
+// Endpoint to fetch all cars
 app.get("/api/cars", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM cars");
@@ -56,16 +73,61 @@ app.get("/api/cars/:id", async (req, res) => {
     }
 });
 
-// Endpoint to add a new car
-app.post("/api/cars", async (req, res) => {
-    const { name, price, description, image_url, make, model, year, mileage, fuel_type, transmission, color, engine_size, horsepower, body_style, features } = req.body;
+// Endpoint to add a new car with photos
+app.post("/api/cars", upload.array("photos", 5), async (req, res) => {
+    const {
+        name,
+        price,
+        description,
+        make,
+        model,
+        year,
+        mileage,
+        fuel_type,
+        transmission,
+        color,
+        engine_size,
+        horsepower,
+        body_style,
+        features,
+    } = req.body;
+
+    // Retrieve the uploaded photos
+    const photos = req.files;
+
     try {
+        // Insert car data into the 'cars' table
         const result = await pool.query(
-            `INSERT INTO cars (name, price, description, image_url, make, model, year, mileage, fuel_type, transmission, color, engine_size, horsepower, body_style, features)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *`,
-            [name, price, description, image_url, make, model, year, mileage, fuel_type, transmission, color, engine_size, horsepower, body_style, features]
+            `INSERT INTO cars (name, price, description, make, model, year, mileage, fuel_type, transmission, color, engine_size, horsepower, body_style, features)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id`,
+            [
+                name,
+                price,
+                description,
+                make,
+                model,
+                year,
+                mileage,
+                fuel_type,
+                transmission,
+                color,
+                engine_size,
+                horsepower,
+                body_style,
+                features,
+            ]
         );
-        res.status(201).json(result.rows[0]);
+        const carId = result.rows[0].id;
+
+        // Insert photos into the 'car_photos' table
+        const photoQuery = `INSERT INTO car_photos (car_id, photo_path) VALUES ($1, $2) RETURNING id`;
+        for (let photo of photos) {
+            const photoPath = `/uploads/photos/${photo.filename}`;
+            await pool.query(photoQuery, [carId, photoPath]);
+        }
+
+        // Respond with the newly added car data
+        res.status(201).json({ success: true, message: "Car added successfully!", carId });
     } catch (err) {
         console.error("Error adding car:", err.message);
         res.status(500).json({ error: "Internal Server Error" });

@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import SellYourCar from "./pages/SellYourCar";
 import About from "./pages/About";
 import FAQ from "./pages/FAQ";
+import AddCar from './pages/AddCar';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/sell-your-car" element={<SellYourCar />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/faq" element={<FAQ />} />
+                    <Route path="/Add-car" element={<AddCar />} />
                 </Routes>
             </div>
             <Footer />
