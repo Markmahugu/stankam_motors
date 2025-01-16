@@ -74,63 +74,58 @@ app.get("/api/cars/:id", async (req, res) => {
 });
 
 // Endpoint to add a new car with photos
-app.post("/api/cars", upload.array("photos", 5), async (req, res) => {
+app.post("/api/cars", upload.single("photo"), async (req, res) => {
     const {
-        name,
-        price,
-        description,
         make,
         model,
         year,
-        mileage,
-        fuel_type,
-        transmission,
-        color,
-        engine_size,
-        horsepower,
+        price,
+        mileage_km,
         body_style,
-        features,
+        transmission,
+        fuel_type,
+        drivetrain,
+        condition,
+        availability,
+        keywords,
     } = req.body;
 
-    // Retrieve the uploaded photos
-    const photos = req.files;
+    // Retrieve the uploaded photo
+    const photo = req.file;
 
     try {
         // Insert car data into the 'cars' table
         const result = await pool.query(
-            `INSERT INTO cars (name, price, description, make, model, year, mileage, fuel_type, transmission, color, engine_size, horsepower, body_style, features)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id`,
+            `INSERT INTO cars (make, model, year, price, mileage_km, body_style, transmission, fuel_type, drivetrain, condition, availability, keywords)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
             [
-                name,
-                price,
-                description,
                 make,
                 model,
                 year,
-                mileage,
-                fuel_type,
-                transmission,
-                color,
-                engine_size,
-                horsepower,
+                price,
+                mileage_km,
                 body_style,
-                features,
+                transmission,
+                fuel_type,
+                drivetrain,
+                condition,
+                availability,
+                keywords,
             ]
         );
         const carId = result.rows[0].id;
 
-        // Insert photos into the 'car_photos' table
-        const photoQuery = `INSERT INTO car_photos (car_id, photo_path) VALUES ($1, $2) RETURNING id`;
-        for (let photo of photos) {
+        // Insert photo into the 'car_photos' table
+        if (photo) {
             const photoPath = `/uploads/photos/${photo.filename}`;
-            await pool.query(photoQuery, [carId, photoPath]);
+            await pool.query(`INSERT INTO car_photos (car_id, photo_path) VALUES ($1, $2)`, [carId, photoPath]);
         }
 
         // Respond with the newly added car data
         res.status(201).json({ success: true, message: "Car added successfully!", carId });
     } catch (err) {
         console.error("Error adding car:", err.message);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error", details: err.message });
     }
 });
 

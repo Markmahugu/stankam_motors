@@ -56,9 +56,6 @@ function SearchBar({ onSearch }) {
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
-                <button className="btn btn-primary" onClick={handleSearch}>
-                    Search
-                </button>
             </div>
             <div className="filters">
                 {/* Price Range */}
@@ -109,15 +106,15 @@ function SearchBar({ onSearch }) {
                         {/* Year */}
                         <div className="filter-group">
                             <label>Year Range</label>
-                            <input type="range" min="2000" max="2023" value={yearRange[0]} onChange={(e) => setYearRange([e.target.value, yearRange[1]])} />
-                            <input type="range" min="2000" max="2023" value={yearRange[1]} onChange={(e) => setYearRange([yearRange[0], e.target.value])} />
+                            <input type="range" min="2000" max="2023" value={yearRange[0]} onChange={(e) => setYearRange([+e.target.value, yearRange[1]])} />
+                            <input type="range" min="2000" max="2023" value={yearRange[1]} onChange={(e) => setYearRange([yearRange[0], +e.target.value])} />
                             <div>{yearRange[0]} - {yearRange[1]}</div>
                         </div>
                         {/* Mileage */}
                         <div className="filter-group">
                             <label>Mileage Range</label>
-                            <input type="range" min="0" max="300000" value={mileageRange[0]} onChange={(e) => setMileageRange([e.target.value, mileageRange[1]])} />
-                            <input type="range" min="0" max="300000" value={mileageRange[1]} onChange={(e) => setMileageRange([mileageRange[0], e.target.value])} />
+                            <input type="range" min="0" max="300000" value={mileageRange[0]} onChange={(e) => setMileageRange([+e.target.value, mileageRange[1]])} />
+                            <input type="range" min="0" max="300000" value={mileageRange[1]} onChange={(e) => setMileageRange([mileageRange[0], +e.target.value])} />
                             <div>{mileageRange[0]} - {mileageRange[1]} miles</div>
                         </div>
                         {/* Body Style */}
@@ -204,7 +201,9 @@ function SearchBar({ onSearch }) {
                                 setSearchTerm("");
                                 setMakeModel([]);
                                 setYearRange([2015, 2023]);
-                                setPriceRange([0, 50000]);
+                                setPriceRange([0, 500000]);
+                                setMinPrice("");
+                                setMaxPrice("");
                                 setMileageRange([0, 200000]);
                                 setBodyStyle([]);
                                 setTransmission([]);
@@ -223,6 +222,9 @@ function SearchBar({ onSearch }) {
                     </>
                 )}
             </div>
+            <button className="btn btn-primary mt-3 w-100" onClick={handleSearch}>
+    Search
+</button>
         </div>
     );
 }

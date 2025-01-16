@@ -20,7 +20,8 @@ const AddCar = () => {
         condition: "Used",
         availability: "Available",
         features: { sunroof: false, leatherSeats: false, navigation: false },
-        keywords: ""
+        keywords: "",
+        photo: null // Add a photo field
     });
 
     const [error, setError] = useState("");
@@ -32,12 +33,17 @@ const AddCar = () => {
 
     // Handle form input changes
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value, type, checked, files } = e.target;
 
         if (type === "checkbox") {
             setCarData({
                 ...carData,
                 features: { ...carData.features, [value]: checked }
+            });
+        } else if (type === "file") {
+            setCarData({
+                ...carData,
+                photo: files[0] // Set the photo file
             });
         } else {
             setCarData({
@@ -53,8 +59,13 @@ const AddCar = () => {
         setError("");  // Reset error message
         setSuccess(""); // Reset success message
 
+        const formData = new FormData();
+        for (const key in carData) {
+            formData.append(key, carData[key]);
+        }
+
         try {
-            const response = await addCar(carData); // Send carData to API
+            const response = await addCar(formData); // Send formData to API
 
             if (response.success) {
                 setSuccess("Car added successfully!");
@@ -71,7 +82,8 @@ const AddCar = () => {
                     condition: "Used",
                     availability: "Available",
                     features: { sunroof: false, leatherSeats: false, navigation: false },
-                    keywords: ""
+                    keywords: "",
+                    photo: null // Reset photo field
                 });
             } else {
                 throw new Error(response.message || "Error adding car");
@@ -267,6 +279,17 @@ const AddCar = () => {
                         name="keywords"
                         value={carData.keywords}
                         onChange={handleChange}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Photo</label>
+                    <input
+                        type="file"
+                        name="photo"
+                        onChange={handleChange}
+                        accept="image/*"
+                        required
                     />
                 </div>
 

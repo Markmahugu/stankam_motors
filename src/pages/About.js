@@ -1,7 +1,9 @@
 import React from "react";
 
 function About() {
+
     return (
+        
         <div className="container mt-5">
             <h1 className="text-center mb-4">About Stankam Motors</h1>
             <section>
