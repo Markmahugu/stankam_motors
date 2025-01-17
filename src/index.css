@@ -1,5 +1,6 @@
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
+/* Root Variables */
 :root {
   --font-family-sans: 'Arial', sans-serif;
   --font-family-code: 'source-code-pro', Menlo, Monaco, Consolas, 'Courier New', monospace;
@@ -10,6 +11,21 @@
   --color-text-light: #555;
   --border-radius: 8px;
   --transition-speed: 0.3s;
+
+  /* Navbar Variables */
+  --navbar-bg-color: #343a40;
+  --navbar-link-color: #ffffff;
+  --navbar-link-hover-color: #dddddd;
+  --navbar-link-spacing: 15px;
+  --navbar-logo-spacing: 20px;
+
+  /* Hero Section Variables */
+  --hero-bg-image: url('/public/ford.png');
+  --hero-overlay-color: rgba(0, 0, 0, 0.5);
+  --hero-title-font-size: 3rem;
+  --hero-subtitle-font-size: 1.5rem;
+  --hero-padding: 30px;
+  --hero-text-color: #ffffff;
 }
 
 /* Global Styles */
@@ -25,19 +41,7 @@ code {
   font-family: var(--font-family-code);
 }
 
-.navbar-brand {
-  font-weight: bold;
-}
-
-/* NavBar Styles */
-:root {
-  --navbar-bg-color: #343a40;
-  --navbar-link-color: #ffffff;
-  --navbar-link-hover-color: #dddddd;
-  --navbar-link-spacing: 15px;
-  --navbar-logo-spacing: 20px;
-}
-
+/* Navbar Styles */
 .navbar {
   background-color: var(--navbar-bg-color);
 }
@@ -49,7 +53,7 @@ code {
 .navbar .navbar-nav .nav-item .nav-link {
   color: var(--navbar-link-color);
   margin-right: var(--navbar-link-spacing);
-  transition: color 0.3s ease;
+  transition: color var(--transition-speed);
 }
 
 .navbar .navbar-nav .nav-item .nav-link:hover {
@@ -76,105 +80,12 @@ code {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Card Styles */
-.card {
-  border: 1px solid #ddd;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Card Image Styles */
-.card-img-top {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-  transition: opacity var(--transition-speed) ease-in-out;
-}
-
-.card-img-top:hover {
-  opacity: 0.8;
-}
-
-/* Card Body Styles */
-.card-body {
-  padding: 16px;
-}
-
-/* Card Title Styles */
-.card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--color-text-dark);
-  margin-bottom: 8px;
-}
-
-/* Price Styles */
-.card-text:first-of-type {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: 8px;
-}
-
-/* Description Text Styles */
-.card-text:last-of-type {
-  font-size: 1rem;
-  color: var(--color-text-light);
-  margin-bottom: 16px;
-}
-
-/* Button Styles */
-.btn-primary {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  padding: 10px 20px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-}
-
-.btn-primary:hover {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-}
-
-/* Responsiveness for Smaller Screens */
-@media (max-width: 767px) {
-  .card {
-    margin-bottom: 20px;
-  }
-
-  .card-img-top {
-    height: 180px;
-  }
-}
-
-/* Hero Section */
-:root {
-  --hero-bg-image: url('/public/ford.png');
-  --hero-overlay-color: rgba(0, 0, 0, 0.5);
-  --hero-title-font-size: 3rem;
-  --hero-subtitle-font-size: 1.5rem;
-  --hero-padding: 30px;
-  --hero-text-color: #ffffff;
-  --hero-transition-speed: 0.3s;
-}
-
 /* Hero Section */
 .hero-section {
   background-image: var(--hero-bg-image);
   background-size: cover;
   background-position: center;
-  height: 100vh; /* Adjust height as needed */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,27 +95,27 @@ code {
 
 .hero-section > * {
   position: relative;
-  z-index: 2; /* Place content above the overlay */
+  z-index: 2;
 }
 
 .hero-section .overlay {
   background: var(--hero-overlay-color);
   padding: var(--hero-padding);
   text-align: center;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
 }
 
 .hero-title {
   font-size: var(--hero-title-font-size);
   font-weight: bold;
   margin-bottom: 10px;
-  transition: transform var(--hero-transition-speed);
+  transition: transform var(--transition-speed);
 }
 
 .hero-subtitle {
   font-size: var(--hero-subtitle-font-size);
   margin-bottom: 20px;
-  transition: transform var(--hero-transition-speed);
+  transition: transform var(--transition-speed);
 }
 
 [data-aos] {
@@ -224,62 +135,16 @@ code {
   transform: translateY(0);
 }
 
-/* Additional Styling */
-.card {
-  transition: transform var(--transition-speed) ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.car-wheel-loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-}
-
-.wheel {
-  width: 100px;
-  height: 100px;
-  border: 10px solid #333;
-  border-radius: 50%;
-  border-top: 10px solid #999;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-      transform: rotate(0deg);
-  }
-  100% {
-      transform: rotate(360deg);
-  }
-}
-
 /* Footer Styles */
-footer .container {
-  display: center;
-  flex-direction: center;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+
+.footer-logo {
+  max-width: 150px;
+  height: auto;
 }
 
-
-/* search bar styles */
-:root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --background-color: #f8f9fa;
-  --text-color: #212529;
-  --border-radius: 0.25rem;
-  --transition-speed: 0.3s;
-}
-
+/* Search Bar Styles */
 .search-bar {
-  background-color: var(--background-color);
+  background-color: var(--color-background);
   padding: 1rem;
   border-radius: var(--border-radius);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -291,7 +156,7 @@ footer .container {
 
 .search-bar .form-control {
   border-radius: var(--border-radius);
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--color-text-light);
 }
 
 .search-bar .btn {
@@ -312,7 +177,7 @@ footer .container {
 .search-bar .filter-group label {
   margin-bottom: 0.5rem;
   font-weight: bold;
-  color: var(--text-color);
+  color: var(--color-text-dark);
 }
 
 .search-bar .filter-group input[type="range"],
@@ -320,7 +185,7 @@ footer .container {
 .search-bar .filter-group input[type="text"],
 .search-bar .filter-group input[type="number"] {
   border-radius: var(--border-radius);
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--color-text-light);
   padding: 0.5rem;
 }
 
@@ -330,8 +195,8 @@ footer .container {
 }
 
 .price-range-buttons .btn-light:hover {
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+  background-color: var(--color-text-light);
+  color: var(--color-text-dark);
 }
 
 .manual-price-inputs {
@@ -353,11 +218,11 @@ footer .container {
 }
 
 .search-bar .filter-actions .btn-secondary:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--color-text-light);
 }
 
 .search-bar .filter-actions .btn-primary:hover {
-  background-color: var(--primary-color);
+  background-color: var(--color-primary);
 }
 
 @media (max-width: 767px) {
@@ -366,59 +231,7 @@ footer .container {
   }
 }
 
-.add-car-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-}
-
-button.submit-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button.submit-btn:hover {
-    background-color: #45a049;
-}
-
-.error-message {
-    color: red;
-    margin-bottom: 15px;
-}
-
-.success-message {
-    color: green;
-    margin-bottom: 15px;
-}
-
-/* AddCar Styles */
-
-
+/* AddCar Form Styles */
 .add-car-form {
   max-width: 700px;
   margin: 30px auto;
@@ -426,7 +239,7 @@ button.submit-btn:hover {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed);
 }
 
 .add-car-form:hover {
@@ -443,7 +256,7 @@ label {
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
-  color: #333;
+  color: var(--color-text-dark);
   text-transform: uppercase;
 }
 
@@ -456,7 +269,7 @@ select {
   border: 1px solid #ddd;
   font-size: 16px;
   background-color: #fafafa;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition: border-color var(--transition-speed), background-color var(--transition-speed);
 }
 
 input[type="text"]:focus,
@@ -476,7 +289,7 @@ button.submit-btn {
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 button.submit-btn:hover {
@@ -512,159 +325,16 @@ button.submit-btn:active {
 
 @media (max-width: 768px) {
   .add-car-form {
-      padding: 20px;
-      max-width: 100%;
+    padding: 20px;
+    max-width: 100%;
   }
 
   button.submit-btn {
-      width: 100%;
+    width: 100%;
   }
 }
 
-
-/* CSS for CarCard and CarDetails Components */
-
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Card Styles */
-.card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #fff;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.card-title {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-.card-text {
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.card-text strong {
-    color: #333;
-}
-
-.card-text ul {
-    padding-left: 20px;
-    margin: 0;
-    list-style-type: disc;
-}
-
-.card-text ul li {
-    margin-bottom: 5px;
-}
-
-/* Button Styles */
-.btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border: none;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.btn-success {
-    background-color: #28a745;
-    border: none;
-    color: #fff;
-}
-
-.btn-success:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-}
-
-.btn i {
-    margin-right: 5px;
-}
-
-/* Badge Styles */
-.badge {
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-}
-
-.badge.bg-secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
-
-/* Alert Styles */
-.alert {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .card-body {
-        padding: 15px;
-    }
-    
-    .card-title {
-        font-size: 1.1rem;
-    }
-    
-    .btn {
-        padding: 8px 15px;
-        font-size: 0.8rem;
-    }
-}
-
-/* CarDetails css */
+/* CarDetails Styles */
 .container {
   margin-top: 1rem;
 }

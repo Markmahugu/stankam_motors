@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
-import "../index.css"; 
+import { Link } from "react-router-dom";
+import "../footer.css"; 
 
 function Footer() {
     return (
         <footer className="bg-dark text-white text-center py-5">
             <div className="container">
-  
+                {/* Logo */}
+                <div className="mb-4">
+                    <img src="/stanmak.png" alt="Stankam Motors Logo" className="footer-logo" />
+                </div>
 
                 {/* Social Media Links */}
                 <div className="mb-4 social-media">

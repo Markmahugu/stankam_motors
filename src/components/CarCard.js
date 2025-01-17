@@ -1,47 +1,49 @@
 import React from "react";
-import '../index.css';
-import { Link } from "react-router-dom"; // To navigate to car details page
-import { generateWhatsAppLink } from '../utils/whatsappUtils'; // Import the utility function
+import '../footer.css';
+import { Link } from "react-router-dom"; // For navigation
+import { generateWhatsAppLink } from '../utils/whatsappUtils'; // WhatsApp utility function
 
 function CarCard({ car }) {
-    // Ensure car.price is a number and handle invalid values
     const price = isNaN(car.price) ? 0 : parseFloat(car.price);
-
-    // WhatsApp number (example number, replace with the actual number you want to use)
-    const whatsappNumber = "254704467869"; // Ensure the number has no spaces or special characters
-
-    // Generate the URL for the car details page
+    const whatsappNumber = "254704467869";
     const carUrl = `${window.location.origin}/car/${car.id}`;
 
     return (
-        <div className="col-md-4 mb-4">
-            <div className="card">
-                <img
-                    src={car.image_url || 'default-image-url'} // Handle missing image URL gracefully
-                    className="card-img-top"
-                    alt={car.name}
-                />
-                <div className="card-body">
-                    <h5 className="card-title">{car.name}</h5>
-                    <p className="card-text">
-                        Price: Ksh. {price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {/* Format the price with commas */}
-                    </p>
-                    <p className="card-text"><strong>Features:</strong>
-                        <ul>
-                            {Object.entries(car.features).map(([key, value]) => (
-                                <li key={key}>{key.replace('_', ' ')}: {value ? 'Yes' : 'No'}</li>
-                            ))}
-                        </ul>
-                    </p>
-                    <p className="card-text"><strong>Model:</strong> {car.model}</p>
-                    <p className="card-text"><strong>Year:</strong> {car.year}</p>
-                    <p className="card-text"><strong>Transmission:</strong> {car.transmission}</p>
-                    <p className="card-text"><strong>Engine:</strong> {car.engine_size} L</p>
-                    <p className="card-text"><strong>Condition:</strong> {car.condition}</p>
+        <div className="car-card-container">
+            <div className="car-card">
+                <div className="car-card-image-container">
+                    <img
+                        src={car.image_url || 'default-image-url'}
+                        alt={car.name}
+                        className="car-card-image"
+                    />
+                    <div className="car-card-year">
+                        {car.year}
+                    </div>
+                </div>
+                <div className="car-card-details">
+                <h5 className="car-card-small-title">
+                        {car.make} {car.model}
+                    </h5>
+                    <p className="car-card-price">
+                    Price: Ksh. {price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {/* Format the price with commas */}                    </p>
+                    <div className="car-card-features">
+                        <div>
+                        <i className="fas fa-tachometer-alt"></i> {car.mileage_km} KM                        </div>
+                        <div>
+                            <i className="fas fa-cogs"></i> {car.transmission}
+                        </div>
+                        <div>
+                        <i className="fas fa-check-circle"></i> {car.condition}                        </div>
+                        <div>
+                        <i className="fas fa-car"></i> {car.cc} CC
+                                                </div>
+                    </div>
+
                     <p className="card-text"><strong>Description:</strong> {car.description}</p>
                     <Link 
                         to={`/car/${car.id}`} // Navigate to CarDetails.js based on the car id
-                        className="btn btn-primary me-2"
+                        className="car-card-btn car-card-btn-details"
                     >
                         View Details
                     </Link>
