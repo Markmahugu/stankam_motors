@@ -7,14 +7,15 @@ function CarCard({ car }) {
     const price = isNaN(car.price) ? 0 : parseFloat(car.price);
     const whatsappNumber = "254704467869";
     const carUrl = `${window.location.origin}/car/${car.id}`;
+    const photoUrl = `/uploads/photos/${car.photo}`; // Construct the full URL for the car photo
 
     return (
         <div className="car-card-container">
             <div className="car-card">
                 <div className="car-card-image-container">
                     <img
-                        src={car.image_url || 'default-image-url'}
-                        alt={car.name}
+                        src={photoUrl} // Use the constructed photo URL
+                        alt={`${car.make} ${car.model}`}
                         className="car-card-image"
                     />
                     <div className="car-card-year">
@@ -22,22 +23,25 @@ function CarCard({ car }) {
                     </div>
                 </div>
                 <div className="car-card-details">
-                <h5 className="car-card-small-title">
+                    <h5 className="car-card-small-title">
                         {car.make} {car.model}
                     </h5>
                     <p className="car-card-price">
-                    Price: Ksh. {price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {/* Format the price with commas */}                    </p>
+                        Price: Ksh. {price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {/* Format the price with commas */}
+                    </p>
                     <div className="car-card-features">
                         <div>
-                        <i className="fas fa-tachometer-alt"></i> {car.mileage_km} KM                        </div>
+                            <i className="fas fa-tachometer-alt"></i> {car.mileage_km} KM
+                        </div>
                         <div>
                             <i className="fas fa-cogs"></i> {car.transmission}
                         </div>
                         <div>
-                        <i className="fas fa-check-circle"></i> {car.condition}                        </div>
+                            <i className="fas fa-check-circle"></i> {car.condition}
+                        </div>
                         <div>
-                        <i className="fas fa-car"></i> {car.cc} CC
-                                                </div>
+                            <i className="fas fa-car"></i> {car.cc} CC
+                        </div>
                     </div>
 
                     <p className="card-text"><strong>Description:</strong> {car.description}</p>

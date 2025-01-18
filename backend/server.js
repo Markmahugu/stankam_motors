@@ -73,7 +73,7 @@ app.get("/api/cars/:id", async (req, res) => {
     }
 });
 
-// Endpoint to add a new car with photos
+// Endpoint to add a new car with photo
 app.post("/api/cars", upload.single("photo"), async (req, res) => {
     const {
         make,
@@ -88,6 +88,8 @@ app.post("/api/cars", upload.single("photo"), async (req, res) => {
         condition,
         availability,
         keywords,
+        description,
+        cc,
     } = req.body;
 
     // Retrieve the uploaded photo
@@ -96,8 +98,8 @@ app.post("/api/cars", upload.single("photo"), async (req, res) => {
     try {
         // Insert car data into the 'cars' table
         const result = await pool.query(
-            `INSERT INTO cars (make, model, year, price, mileage_km, body_style, transmission, fuel_type, drivetrain, condition, availability, keywords)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
+            `INSERT INTO cars (make, model, year, price, mileage_km, body_style, transmission, fuel_type, drivetrain, condition, availability, keywords, description, cc, photo)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING id`,
             [
                 make,
                 model,
@@ -111,15 +113,12 @@ app.post("/api/cars", upload.single("photo"), async (req, res) => {
                 condition,
                 availability,
                 keywords,
+                description,
+                cc,
+                photo ? photo.filename : null,
             ]
         );
         const carId = result.rows[0].id;
-
-        // Insert photo into the 'car_photos' table
-        if (photo) {
-            const photoPath = `/uploads/photos/${photo.filename}`;
-            await pool.query(`INSERT INTO car_photos (car_id, photo_path) VALUES ($1, $2)`, [carId, photoPath]);
-        }
 
         // Respond with the newly added car data
         res.status(201).json({ success: true, message: "Car added successfully!", carId });

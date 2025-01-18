@@ -41,44 +41,6 @@ code {
   font-family: var(--font-family-code);
 }
 
-/* Navbar Styles */
-.navbar {
-  background-color: var(--navbar-bg-color);
-}
-
-.navbar .navbar-brand {
-  font-weight: bold;
-}
-
-.navbar .navbar-nav .nav-item .nav-link {
-  color: var(--navbar-link-color);
-  margin-right: var(--navbar-link-spacing);
-  transition: color var(--transition-speed);
-}
-
-.navbar .navbar-nav .nav-item .nav-link:hover {
-  color: var(--navbar-link-hover-color);
-}
-
-.navbar .navbar-logo {
-  width: 200px;
-  height: auto;
-  margin-bottom: var(--navbar-logo-spacing);
-}
-
-.navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbar-toggler {
-  border: none;
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
 
 /* Hero Section */
 .hero-section {

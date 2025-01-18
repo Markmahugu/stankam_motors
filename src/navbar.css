@@ -1,0 +1,53 @@
+/* Updated navbar.css */
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0); /* Transparent black */
+  backdrop-filter: blur(8px); /* Glassy effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar:hover {
+  background-color: rgba(0, 0, 0, 0); /* Slightly darker on hover */
+}
+
+.navbar .navbar-logo {
+  height: 50px; /* Ensure logo fits */
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85); /* Light text */
+  font-weight: 500; /* Medium font weight */
+  text-transform: uppercase; /* Optional styling */
+  padding: 0.5rem 1rem; /* Adjust spacing */
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffd700; /* Gold highlight */
+}
+
+.navbar-toggler {
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.container {
+  max-width: 1200px;
+}
+
+@media (max-width: 992px) {
+  .navbar-nav {
+      background-color: rgba(0, 0, 0, 0);
+      padding: 10px;
+      border-radius: 10px;
+  }
+  .nav-link {
+      margin: 5px 0;
+  }
+}
