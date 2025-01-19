@@ -61,13 +61,15 @@ function Home() {
     return (
         <div>
             {/* Hero Section */}
-            <section className="hero-section" style={{ backgroundImage: "url('/ford.png')" }}>
+            <section className="hero-section" style={{ backgroundImage: "url('/hero.jpg')" }}>
                 <div className="overlay">
 
                     <h1 data-aos="fade-up" className="text-center text-white hero-title">
-                        Welcome to STANMAK MOTORS
+                        Welcome to
                     </h1>
-                    <p data-aos="fade-up" data-aos-delay="200" className="text-center text-white hero-subtitle">
+
+                    <h1 class="stanmak-motors">STANKAM MOTORS</h1>
+                    <p data-aos="fade-up" data-aos-delay="300" className="text-center text-white hero-subtitle">
                         Find Your Dream Car Today
                     </p>
                 </div>
@@ -118,18 +120,18 @@ function Home() {
                 </div>
             </section>
 
-            {/* Cars Section */}
-            <div className="container mt-4">
-                <h2 className="text-center mb-4">Available Cars</h2>
-                <SearchBar onSearch={handleSearch} />
-                <div className="row">
-                    {filteredCars.length === 0 ? (
-                        <div className="col-12 text-center">No cars found matching your search.</div>
-                    ) : (
-                        filteredCars.map((car) => <CarCard key={car.id} car={car} />)
-                    )}
-                </div>
-            </div>
+{/* Cars Section */}
+<div className="container mt-4">
+    <h2 className="text-center mb-4">Available Cars</h2>
+    <SearchBar onSearch={handleSearch} />
+    <div className="row">
+        {filteredCars.length === 0 ? (
+            <div className="col-12 text-center">No cars found matching your search.</div>
+        ) : (
+            filteredCars.map((car) => <CarCard key={car.id} car={car} />)
+        )}
+    </div>
+</div>
         </div>
     );
 }

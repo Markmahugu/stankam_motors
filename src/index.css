@@ -20,7 +20,7 @@
   --navbar-logo-spacing: 20px;
 
   /* Hero Section Variables */
-  --hero-bg-image: url('/public/ford.png');
+  --hero-bg-image: url('/public/hero.jpg');
   --hero-overlay-color: rgba(0, 0, 0, 0.5);
   --hero-title-font-size: 3rem;
   --hero-subtitle-font-size: 1.5rem;
@@ -43,6 +43,33 @@ code {
 
 
 /* Hero Section */
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap');
+
+.stanmak-motors {
+  font-size: 8vw;
+  line-height: 8vw;
+  margin: 0;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 900;
+  background: url('/public/interior.jpg');
+  background-size: 40%;
+  background-position: 50% 50%;
+  -webkit-background-clip: text;
+  color: rgba(0, 0, 0, 0.08);
+  animation: zoomout 10s ease 500ms forwards;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.11), 0 0 20px rgba(255, 255, 2rgba(255, 255, 255, 0.164).171), 0 0 30px white; /* Adding white glow */
+}
+
+@keyframes zoomout {
+  from {
+    background-size: 40%;
+  }
+  to {
+    background-size: 10%;
+  }
+}
+
+
 .hero-section {
   background-image: var(--hero-bg-image);
   background-size: cover;
@@ -61,7 +88,7 @@ code {
 }
 
 .hero-section .overlay {
-  background: var(--hero-overlay-color);
+  background: rgba(0, 0, 0, 0.329);
   padding: var(--hero-padding);
   text-align: center;
   border-radius: var(--border-radius);
@@ -97,11 +124,19 @@ code {
   transform: translateY(0);
 }
 
-/* Footer Styles */
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  .hero-section {
+    height: 60vh; /* Adjust the height as needed for mobile devices */
+  }
 
-.footer-logo {
-  max-width: 150px;
-  height: auto;
+  .hero-title {
+    font-size: calc(var(--hero-title-font-size) * 0.8); /* Adjust font size if needed */
+  }
+
+  .hero-subtitle {
+    font-size: calc(var(--hero-subtitle-font-size) * 0.8); /* Adjust font size if needed */
+  }
 }
 
 /* Search Bar Styles */
@@ -222,78 +257,45 @@ label {
   text-transform: uppercase;
 }
 
-input[type="text"],
-input[type="number"],
-select {
-  width: 100%;
-  padding: 12px 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  background-color: #fafafa;
-  transition: border-color var(--transition-speed), background-color var(--transition-speed);
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus {
-  border-color: #4CAF50;
-  background-color: #fff;
-  outline: none;
-}
-
-button.submit-btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color var(--transition-speed), transform var(--transition-speed);
-}
-
-button.submit-btn:hover {
-  background-color: #45a049;
-  transform: translateY(-2px);
-}
-
-button.submit-btn:active {
-  background-color: #388e3c;
-  transform: translateY(0);
-}
-
-.error-message,
-.success-message {
-  margin-bottom: 25px;
-  padding: 15px;
-  font-size: 16px;
-  border-radius: 8px;
+/* Buttons */
+.car-card-btn {
   text-align: center;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-.error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+.car-card-btn:hover {
+  background-color: #2980b9;
 }
 
-.success-message {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+.car-card-btn-details {
+  margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-  .add-car-form {
-    padding: 20px;
-    max-width: 100%;
-  }
+.btn-success {
+  background-color: #27ae60;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+}
 
-  button.submit-btn {
-    width: 100%;
-  }
+.btn btn-successs:hover {
+  background-color: #2ecc71;
+}
+
+.fab.fa-whatsapp {
+  margin-right: 8px;
 }
 
 /* CarDetails Styles */

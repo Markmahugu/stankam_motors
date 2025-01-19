@@ -1,7 +1,7 @@
 import React from "react";
-import '../footer.css';
 import { Link } from "react-router-dom"; // For navigation
 import { generateWhatsAppLink } from '../utils/whatsappUtils'; // WhatsApp utility function
+import '../CarCard.css';
 
 function CarCard({ car }) {
     const price = isNaN(car.price) ? 0 : parseFloat(car.price);
@@ -12,24 +12,24 @@ function CarCard({ car }) {
     return (
         <div className="car-card-container">
             <div className="car-card">
-                <div className="car-card-image-container">
+                <div className="car-image-container">
                     <img
                         src={photoUrl} // Use the constructed photo URL
                         alt={`${car.make} ${car.model}`}
-                        className="car-card-image"
+                        className="car-image"
                     />
-                    <div className="car-card-year">
+                    <div className="car-year">
                         {car.year}
                     </div>
                 </div>
-                <div className="car-card-details">
-                    <h5 className="car-card-small-title">
+                <div className="car-details">
+                    <h5 className="car-title">
                         {car.make} {car.model}
                     </h5>
-                    <p className="car-card-price">
+                    <p className="car-price"> 
                         Price: Ksh. {price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {/* Format the price with commas */}
                     </p>
-                    <div className="car-card-features">
+                    <div className="car-features">
                         <div>
                             <i className="fas fa-tachometer-alt"></i> {car.mileage_km} KM
                         </div>
@@ -44,10 +44,10 @@ function CarCard({ car }) {
                         </div>
                     </div>
 
-                    <p className="card-text"><strong>Description:</strong> {car.description}</p>
+                    <p className="car-description"><strong>Description:</strong> {car.description}</p>
                     <Link 
                         to={`/car/${car.id}`} // Navigate to CarDetails.js based on the car id
-                        className="car-card-btn car-card-btn-details"
+                        className="car-btn car-btn-details"
                     >
                         View Details
                     </Link>

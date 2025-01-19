@@ -1,0 +1,163 @@
+/* CarCard.css */
+
+
+/* Each individual card should have a fixed width and align horizontally */
+.car-card-container {
+  flex: 0 1 30%; /* Adjust this percentage based on how many cards per row you want */
+  margin-bottom: 20px; /* Spacing between the rows of cards */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  max-width: 100%;
+}
+
+/* Optionally, set a maximum width for cards */
+.car-card {
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+}
+
+/* Hover effect to enlarge the card */
+.car-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.car-image-container {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #e0e0e0; /* Optional: Add a bottom border for better separation */
+}
+
+.car-image {
+  width: 100%; /* Ensures the image takes the full width of its container */
+  height: 200px; /* Sets a fixed height for all images */
+  display: block;
+  object-fit: cover; /* Ensures the image covers the entire container without distortion */
+  transition: transform 0.3s ease; /* Adds a smooth transition effect */
+}
+
+/* Zoom in effect on hover */
+.car-card:hover .car-image {
+  transform: scale(1.1);
+}
+
+.car-year {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.875rem; /* Optional: Adjust font size for better readability */
+}
+
+.car-details {
+  padding: 15px;
+  background-color: #fff;
+}
+
+.car-btn {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  text-transform: uppercase; /* Optional: Make the button text uppercase */
+  font-weight: bold; /* Optional: Make the button text bold */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer; /* Optional: Change cursor to pointer */
+}
+
+.car-btn-details {
+  background-color: #007bff;
+  color: #fff;
+  border: none; /* Remove default border */
+}
+
+.car-btn-details:hover {
+  background-color: #0056b3; /* Darken the button on hover */
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border: none; /* Remove default border */
+  margin-top: 10px;
+  width: 100%; /* Make the button span the full width of its container */
+  padding: 10px; /* Add padding for better appearance */
+  text-align: center; /* Center the text */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Darken the button on hover */
+}
+/* Responsive Styles */
+
+/* For tablets and below, adjust layout for smaller screens */
+@media (max-width: 768px) {
+  .car-card-container {
+    flex: 0 1 45%; /* 2 cards per row on tablets */
+  }
+
+  .car-image-container {
+    height: 180px; /* Adjust height for mobile */
+  }
+
+  .car-title {
+    font-size: 1rem; /* Reduce font size for mobile */
+  }
+
+  .car-price {
+    font-size: 1rem; /* Reduce font size for mobile */
+  }
+
+  .car-features {
+    font-size: 0.9rem; /* Reduce icon font size */
+  }
+
+  .car-btn, .btn-success {
+    font-size: 0.9rem; /* Make buttons more compact on mobile */
+  }
+
+  .car-btn-details {
+    padding: 8px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  .car-card-container {
+    flex: 0 1 100%; /* 1 card per row on mobile */
+    margin-bottom: 15px;
+  }
+
+  .car-image-container {
+    height: 150px; /* Further adjust image height for mobile */
+  }
+
+  .car-title {
+    font-size: 0.9rem; /* Reduce title font size */
+  }
+
+  .car-price {
+    font-size: 0.9rem; /* Reduce price font size */
+  }
+
+  .car-features {
+    font-size: 0.8rem; /* Adjust feature icons' font size */
+  }
+
+  .car-btn, .btn-success {
+    font-size: 0.85rem; /* Reduce font size for buttons on mobile */
+  }
+
+  .car-btn-details {
+    padding: 6px 12px; /* Compact button size for mobile */
+  }
+}
