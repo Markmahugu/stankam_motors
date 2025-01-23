@@ -1,15 +1,13 @@
 /* CarCard.css */
 
-
-/* Each individual card should have a fixed width and align horizontally */
+/* General container styling */
 .car-card-container {
-  flex: 0 1 30%; /* Adjust this percentage based on how many cards per row you want */
-  margin-bottom: 20px; /* Spacing between the rows of cards */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  flex: 0 1 30%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
   max-width: 100%;
 }
 
-/* Optionally, set a maximum width for cards */
 .car-card {
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -19,7 +17,6 @@
   background-color: #fff;
 }
 
-/* Hover effect to enlarge the card */
 .car-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -28,18 +25,18 @@
 .car-image-container {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid #e0e0e0; /* Optional: Add a bottom border for better separation */
+  border-bottom: 1px solid #e0e0e0;
+  height: 200px;
 }
 
 .car-image {
-  width: 100%; /* Ensures the image takes the full width of its container */
-  height: 200px; /* Sets a fixed height for all images */
+  width: 100%;
+  height: 100%;
   display: block;
-  object-fit: cover; /* Ensures the image covers the entire container without distortion */
-  transition: transform 0.3s ease; /* Adds a smooth transition effect */
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Zoom in effect on hover */
 .car-card:hover .car-image {
   transform: scale(1.1);
 }
@@ -48,11 +45,11 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(255, 0, 0, 0.423);
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 0.875rem; /* Optional: Adjust font size for better readability */
+  font-size: 0.875rem;
 }
 
 .car-details {
@@ -67,62 +64,53 @@
   padding: 10px;
   width: 100%;
   border-radius: 5px;
-  text-transform: uppercase; /* Optional: Make the button text uppercase */
-  font-weight: bold; /* Optional: Make the button text bold */
+  text-transform: uppercase;
+  font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
-  cursor: pointer; /* Optional: Change cursor to pointer */
+  cursor: pointer;
 }
 
 .car-btn-details {
   background-color: #007bff;
   color: #fff;
-  border: none; /* Remove default border */
+  border: none;
 }
 
 .car-btn-details:hover {
-  background-color: #0056b3; /* Darken the button on hover */
+  background-color: #0056b3;
 }
 
 .btn-success {
   background-color: #28a745;
   color: #fff;
-  border: none; /* Remove default border */
+  border: none;
   margin-top: 10px;
-  width: 100%; /* Make the button span the full width of its container */
-  padding: 10px; /* Add padding for better appearance */
-  text-align: center; /* Center the text */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-success:hover {
-  background-color: #218838; /* Darken the button on hover */
+  background-color: #218838;
 }
-/* Responsive Styles */
 
-/* For tablets and below, adjust layout for smaller screens */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .car-card-container {
-    flex: 0 1 45%; /* 2 cards per row on tablets */
+    flex: 0 1 45%;
   }
 
   .car-image-container {
-    height: 180px; /* Adjust height for mobile */
+    height: 180px;
   }
 
-  .car-title {
-    font-size: 1rem; /* Reduce font size for mobile */
-  }
-
-  .car-price {
-    font-size: 1rem; /* Reduce font size for mobile */
-  }
-
-  .car-features {
-    font-size: 0.9rem; /* Reduce icon font size */
-  }
-
-  .car-btn, .btn-success {
-    font-size: 0.9rem; /* Make buttons more compact on mobile */
+  .car-title,
+  .car-price,
+  .car-features,
+  .car-btn,
+  .btn-success {
+    font-size: 0.9rem;
   }
 
   .car-btn-details {
@@ -130,34 +118,96 @@
   }
 }
 
-/* For mobile devices */
 @media (max-width: 480px) {
   .car-card-container {
-    flex: 0 1 100%; /* 1 card per row on mobile */
+    flex: 0 1 100%;
     margin-bottom: 15px;
   }
 
   .car-image-container {
-    height: 150px; /* Further adjust image height for mobile */
+    height: 150px;
   }
 
-  .car-title {
-    font-size: 0.9rem; /* Reduce title font size */
-  }
-
-  .car-price {
-    font-size: 0.9rem; /* Reduce price font size */
-  }
-
-  .car-features {
-    font-size: 0.8rem; /* Adjust feature icons' font size */
-  }
-
-  .car-btn, .btn-success {
-    font-size: 0.85rem; /* Reduce font size for buttons on mobile */
+  .car-title,
+  .car-price,
+  .car-features,
+  .car-btn,
+  .btn-success {
+    font-size: 0.85rem;
   }
 
   .car-btn-details {
-    padding: 6px 12px; /* Compact button size for mobile */
+    padding: 6px 12px;
+  }
+}
+
+/* Styles for the car-features section */
+.car-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.car-features div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1 1 45%;
+}
+
+.car-features i {
+  font-size: 1.2rem;
+  color: #ff0000;
+}
+
+@media (max-width: 768px) {
+  .car-features {
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .car-features div {
+    flex: 1 1 100%;
+  }
+
+  .car-features i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-features {
+    gap: 5px;
+    font-size: 0.85rem;
+  }
+
+  .car-features i {
+    font-size: 0.9rem;
+  }
+}
+
+/* Styles for the car-price element */
+.car-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  margin: 10px 0;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .car-price {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-price {
+    font-size: 0.9rem;
+    text-align: center;
   }
 }

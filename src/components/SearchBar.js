@@ -24,7 +24,7 @@ function SearchBar({ onSearch }) {
 
     const handleSearch = () => {
         const filters = {
-            searchTerm,
+            searchTerm: searchTerm?.toLowerCase() || "",
             makeModel,
             yearRange,
             priceRange: [minPrice || priceRange[0], maxPrice || priceRange[1]],
@@ -35,11 +35,11 @@ function SearchBar({ onSearch }) {
             drivetrain,
             condition,
             features,
-            keywords,
+            keywords: keywords?.toLowerCase() || "",
         };
         onSearch(filters);
     };
-
+        
     const handlePriceRangeChange = (min, max) => {
         setPriceRange([min, max]);
         setMinPrice(min);
